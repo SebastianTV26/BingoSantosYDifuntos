@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo Supabase + HTML</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body { font-family: Arial; max-width: 600px; margin: 40px auto; }
+    input, button { padding: 8px; margin: 5px 0; width: 100%; }
+    .mensaje { background: #f3f3f3; padding: 10px; border-radius: 8px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>💬 Mensajes con Supabase</h1>
+
+  <div>
+    <input id="nombre" placeholder="Tu nombre">
+    <textarea id="contenido" placeholder="Escribe un mensaje..." rows="3"></textarea>
+    <button onclick="agregarMensaje()">Enviar</button>
+  </div>
+
+  <h2>Mensajes recientes:</h2>
+  <div id="mensajes"></div>
+
+  <script>
+    // 🔑 Conexión con tu proyecto Supabase
+    const SUPABASE_URL = "https://uuhjlglcqovzcqmzpcnj.supabase.co"; 
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV1aGpsZ2xjcW92emNxbXpwY25qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA0NDgzMzksImV4cCI6MjA3NjAyNDMzOX0.JzvuNuYjRCLOa_Fmaw2XlX8pnwTjaBMUtlk8JQn6E2s"; 
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    async function cargarMensajes() {
+      const { data, error } = await supabase
+        .from("mensajes")
+        .select("*")
+        .order("fecha", { ascending: false });
+
+      if (error) {
+        document.getElementById("mensajes").innerHTML = "❌ Error cargando mensajes";
+        console.error(error);
+        return;
+      }
+
+      const contenedor = document.getElementById("mensajes");
+      contenedor.innerHTML = "";
+      data.forEach(m => {
+        const div = document.createElement("div");
+        div.classList.add("mensaje");
+        div.innerHTML = `<strong>${m.nombre}</strong>: ${m.contenido}<br><small>${new Date(m.fecha).toLocaleString()}</small>`;
+        contenedor.appendChild(div);
+      });
+    }
+
+    async function agregarMensaje() {
+      const nombre = document.getElementById("nombre").value.trim();
+      const contenido = document.getElementById("contenido").value.trim();
+      if (!nombre || !contenido) return alert("Completa ambos campos");
+
+      const { error } = await supabase.from("mensajes").insert([{ nombre, contenido }]);
+      if (error) return alert("Error al guardar el mensaje");
+      
+      document.getElementById("contenido").value = "";
+      cargarMensajes();
+    }
+
+    // Carga inicial
+    cargarMensajes();
+  </script>
+</body>
+</html>
