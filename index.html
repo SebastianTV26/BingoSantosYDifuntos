@@ -7,7 +7,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     body { font-family: Arial; max-width: 600px; margin: 40px auto; }
-    input, button { padding: 8px; margin: 5px 0; width: 100%; }
+    input, button, textarea { padding: 8px; margin: 5px 0; width: 100%; }
     .mensaje { background: #f3f3f3; padding: 10px; border-radius: 8px; margin-top: 10px; }
   </style>
 </head>
@@ -27,17 +27,19 @@
     // 🔑 Conexión con tu proyecto Supabase
     const SUPABASE_URL = "https://uuhjlglcqovzcqmzpcnj.supabase.co"; 
     const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV1aGpsZ2xjcW92emNxbXpwY25qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA0NDgzMzksImV4cCI6MjA3NjAyNDMzOX0.JzvuNuYjRCLOa_Fmaw2XlX8pnwTjaBMUtlk8JQn6E2s"; 
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // ✅ Usamos window.supabase para no sobrescribir la variable
+    const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
     async function cargarMensajes() {
-      const { data, error } = await supabase
+      const { data, error } = await client
         .from("mensajes")
         .select("*")
         .order("fecha", { ascending: false });
 
       if (error) {
+        console.error("Error al cargar mensajes:", error);
         document.getElementById("mensajes").innerHTML = "❌ Error cargando mensajes";
-        console.error(error);
         return;
       }
 
@@ -56,14 +58,20 @@
       const contenido = document.getElementById("contenido").value.trim();
       if (!nombre || !contenido) return alert("Completa ambos campos");
 
-      const { error } = await supabase.from("mensajes").insert([{ nombre, contenido }]);
-      if (error) return alert("Error al guardar el mensaje");
+      const { error } = await client
+        .from("mensajes")
+        .insert([{ nombre, contenido }]);
+
+      if (error) {
+        console.error("Error al guardar mensaje:", error);
+        return alert("❌ Error al guardar el mensaje");
+      }
       
       document.getElementById("contenido").value = "";
       cargarMensajes();
     }
 
-    // Carga inicial
+    // 🚀 Carga inicial
     cargarMensajes();
   </script>
 </body>
