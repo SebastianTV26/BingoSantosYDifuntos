@@ -22,31 +22,30 @@
     const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
     async function cargarSantos() {
-      // Consultar la tabla Santo
-      const { data, error } = await client.from("Santo").select("*");
+    const { data, error } = await client.from("santo").select("*");
 
-      if (error) {
-        console.error("Error al cargar los santos:", error);
-        return;
-      }
-
-      const container = document.getElementById("santos-container");
-      container.innerHTML = "";
-
-      // Crear un bloque HTML por cada santo
-      data.forEach(santo => {
-        const div = document.createElement("div");
-        div.className = "santo";
-        div.innerHTML = `
-          <h3>${santo.Nombre}</h3>
-          <img src="${santo.Imagen}" alt="${santo.Nombre}">
-        `;
-        container.appendChild(div);
-      });
+    if (error) {
+      console.error("Error al cargar los santos:", error);
+      return;
     }
 
-    // Llamar a la función al cargar la página
-    cargarSantos();
+    console.log("Datos recibidos:", data);
+
+    const container = document.getElementById("santos-container");
+    container.innerHTML = "";
+
+    data.forEach(santo => {
+      console.log("Mostrando:", santo.Nombre, santo.Imagen); // 👈 ver qué trae
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <h3>${santo.Nombre}</h3>
+        <img src="${santo.Imagen}" alt="${santo.Nombre}" width="200">
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  cargarSantos();
   </script>
 </body>
 </html>
