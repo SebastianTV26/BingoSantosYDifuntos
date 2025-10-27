@@ -13,12 +13,39 @@
 
 
   <script>
-    // Conexión con tu proyecto Supabase
+    // Conexión con Supabase
     const SUPABASE_URL = "https://uuhjlglcqovzcqmzpcnj.supabase.co"; 
     const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV1aGpsZ2xjcW92emNxbXpwY25qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA0NDgzMzksImV4cCI6MjA3NjAyNDMzOX0.JzvuNuYjRCLOa_Fmaw2XlX8pnwTjaBMUtlk8JQn6E2s"; 
 
     // Usamos window.supabase para no sobrescribir la variable
     const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    async function cargarSantos() {
+      // Consultar la tabla Santo
+      const { data, error } = await client.from("Santo").select("*");
+
+      if (error) {
+        console.error("Error al cargar los santos:", error);
+        return;
+      }
+
+      const container = document.getElementById("santos-container");
+      container.innerHTML = "";
+
+      // Crear un bloque HTML por cada santo
+      data.forEach(santo => {
+        const div = document.createElement("div");
+        div.className = "santo";
+        div.innerHTML = `
+          <h3>${santo.Nombre}</h3>
+          <img src="${santo.Imagen}" alt="${santo.Nombre}">
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    // Llamar a la función al cargar la página
+    cargarSantos();
   </script>
 </body>
 </html>
