@@ -35,11 +35,11 @@
     container.innerHTML = "";
 
     data.forEach(santo => {
-      console.log("Mostrando:", santo.Nombre, santo.Imagen); // 👈 ver qué trae
+      console.log("Mostrando:", santo.nombre, santo.imagen); // 👈 ver qué trae
       const div = document.createElement("div");
       div.innerHTML = `
-        <h3>${santo.Nombre}</h3>
-        <img src="${santo.Imagen}" alt="${santo.Nombre}" width="200">
+        <h3>${santo.nombre}</h3>
+        <img src="${santo.imagen}" alt="${santo.nombre}" width="200">
       `;
       container.appendChild(div);
     });
