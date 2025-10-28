@@ -14,7 +14,7 @@ async function sortearSantos() {
   }
   
   // Filtrar los que aún no se han sorteado
-  const disponibles = data.filter(s => !santosSorteados.includes(s.id));
+  const disponibles = data.filter(santo => !santosSorteados.includes(santo.id));
 
    if (disponibles.length === 0) {
     alert("Ya se sortearon todos los santos");
