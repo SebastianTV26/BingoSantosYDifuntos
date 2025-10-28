@@ -8,9 +8,23 @@
   <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-  <h1>Bingo de los Santos</h1>
-  <div id="santos-container"></div>
-
+  <div class="container">
+    <!-- Títulos -->
+    <div class="container-titulos">
+      <div class="container-logo">
+        <img src="Img/Logo Rayos de Misericordia.jpg" alt="Logo" width="25%">
+      </div>
+      <h1>Bingo de los Santos</h1>
+      <div class="container-boton">
+        <button type="button" onclick="sortearSantos()">Sortear</button>
+        <button type="button" onclick="reiniciar()">Reiniciar</button>
+      </div>
+    </div>
+    <!-- Información del Santo -->
+    <div class="container-santo">
+      <div class="santo" id="santo"></div>
+    </div>
+  </div>  
   <script src="calculos.js">
   </script>
 </body>
