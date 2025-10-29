@@ -109,12 +109,12 @@ button:active {
       min-height: auto;
   }
 
-  .logo {
-      width: 50%;
+  .imagen {
+    max-width: 95%;
   }
 
-  img {
-    max-width: 90%;
+  .logo {
+      width: 50%;
   }
 
   button {
@@ -133,8 +133,8 @@ button:active {
       width: 70%;
   }
 
-  img {
-    max-width: 90%;
+  .imagen {
+    max-width: 95%;
   }
 
   button {
