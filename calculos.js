@@ -32,7 +32,7 @@ async function sortearSantos() {
   document.getElementById("letra").innerText = santo.letra;
   document.getElementById("nombre").innerText = santo.nombre;
   document.getElementById("imagen").innerHTML = 
-    `<img src="${santo.imagen}" width="350" height="350" alt="${santo.nombre}">`;
+    `<img src="${santo.imagen}" class="imagen" alt="${santo.nombre}">`;
 }
 
 async function reiniciar() {
