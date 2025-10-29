@@ -115,7 +115,7 @@ button:active {
   }
   .imagen {
     max-width: 10em;
-    max-height: 10em;
+    height: auto;
   }
   .logo {
     width: 50%;
@@ -138,7 +138,8 @@ button:active {
   }
 
   .imagen {
-    max-width: 95%;
+    max-width: 10em;
+    height: auto;
   }
 
   button {
