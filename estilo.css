@@ -37,17 +37,20 @@ img {
     display: flex;
     justify-content: space-between;
     min-height: 95vh;
+    box-sizing: border-box;
 }
 
 .container-titulos {
     width: 48%;
     min-height: 95vh;
     background-color: #D1A2FC;
+    box-sizing: border-box;
 }
 
 .container-santo {
     width: 48%;
     border: 4px solid #8102F5;
+    box-sizing: border-box;
 }
 .letra {
     margin-top: 0;
@@ -86,4 +89,59 @@ button:hover {
 button:active {
   transform: translateY(1px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* 📱 RESPONSIVIDAD */
+@media (max-width: 1024px) {
+  h1 { font-size: 2.5em; }
+  h2 { font-size: 3em; }
+  h3, p { font-size: 1.5em; }
+
+  .container {
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+  }
+
+  .container-titulos, .container-santo {
+      width: 90%;
+      min-height: auto;
+  }
+
+  .logo {
+      width: 50%;
+  }
+
+  button {
+      font-size: 1.2em;
+      padding: 0.8rem 1.5rem;
+      margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 { font-size: 2em; }
+  h2 { font-size: 2.5em; }
+  h3, p { font-size: 1.2em; }
+
+  .logo {
+      width: 70%;
+  }
+
+  button {
+      width: 90%;
+      font-size: 1em;
+      padding: 0.7rem 1rem;
+      margin-top: 0.5rem;
+  }
+
+  .container {
+      padding: 0.5rem;
+  }
+
+  .container-titulos, .container-santo {
+      width: 100%;
+      padding: 0.5rem;
+  }
 }
