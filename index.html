@@ -12,9 +12,11 @@
     <!-- Títulos -->
     <div class="container-titulos">
       <div class="container-logo">
-        <img src="Img/Logo Rayos de Misericordia.jpg" alt="Logo" width="25%">
+        <img class="logo" src="Img/Logo Rayos de Misericordia.jpg" alt="Logo">
       </div>
-      <h1>Bingo de los Santos</h1>
+      <div>
+        <h1 class="titulo">Bingo de los Santos</h1>
+      </div>
       <div class="container-boton">
         <button type="button" onclick="sortearSantos()">Sortear</button>
         <button type="button" onclick="reiniciar()">Reiniciar</button>
@@ -22,7 +24,9 @@
     </div>
     <!-- Información del Santo -->
     <div class="container-santo">
-      <div class="santo" id="santo"></div>
+      <h2 class="letra" id="letra"></h2>
+      <h3 class="nombre" id="nombre"></h3>
+      <div class="imagen" id="imagen"></div>
     </div>
   </div>  
   <script src="calculos.js">

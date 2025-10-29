@@ -29,15 +29,15 @@ async function sortearSantos() {
   santosSorteados.push(santo.id);
   console.log("Santo sorteado:", santo.nombre);
 
-  document.getElementById("santo").innerHTML = `
-    <h2>${santo.letra}</h2>
-    <h3>${santo.nombre}</h3>
-    <img src="${santo.imagen}" width="300" height="300">
-  `;
+  document.getElementById("letra").innerText = santo.letra;
+  document.getElementById("nombre").innerText = santo.nombre;
+  document.getElementById("imagen").innerHTML = 
+    `<img src="${santo.imagen}" width="350" height="350" alt="${santo.nombre}">`;
 }
 
 async function reiniciar() {
-  const contenedor = document.getElementById("santo");
-  contenedor.innerHTML = "";
+  document.getElementById("letra").innerText = "";
+  document.getElementById("nombre").innerText = "";
+  document.getElementById("imagen").innerHTML = "";
   santosSorteados = [];
 }
