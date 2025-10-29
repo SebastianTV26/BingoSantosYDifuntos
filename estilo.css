@@ -99,14 +99,14 @@ button:active {
   h3, p { font-size: 1.5em; }
 
   .container {
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
   }
 
   .container-titulos, .container-santo {
-      width: 90%;
-      min-height: auto;
+    width: 90%;
+    min-height: auto;
   }
 
   .imagen {
@@ -114,13 +114,13 @@ button:active {
   }
 
   .logo {
-      width: 50%;
+    width: 50%;
   }
 
   button {
-      font-size: 1.2em;
-      padding: 0.8rem 1.5rem;
-      margin-top: 0.5rem;
+    font-size: 1.2em;
+    padding: 0.8rem 1.5rem;
+    margin-top: 0.5rem;
   }
 }
 
@@ -130,7 +130,7 @@ button:active {
   h3, p { font-size: 1.2em; }
 
   .logo {
-      width: 70%;
+    width: 70%;
   }
 
   .imagen {
@@ -138,18 +138,18 @@ button:active {
   }
 
   button {
-      width: 90%;
-      font-size: 1em;
-      padding: 0.7rem 1rem;
-      margin-top: 0.5rem;
+    width: 90%;
+    font-size: 1em;
+    padding: 0.7rem 1rem;
+    margin-top: 0.5rem;
   }
 
   .container {
-      padding: 0.5rem;
+    padding: 0.5rem;
   }
 
   .container-titulos, .container-santo {
-      width: 100%;
-      padding: 0.5rem;
+    width: 100%;
+    padding: 0.5rem;
   }
 }
