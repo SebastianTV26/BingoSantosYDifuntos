@@ -12,64 +12,37 @@ h3 {
 p {
     font-size: 2em;
 }
-img {
-    border: 4px solid #8102F5;
-    border-radius: 12px;
-}
-.logo {
-    width: 35%;
-    margin-top: 1rem;
-    margin-bottom: 0;
-}
-.titulo {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-.container-boton {
-    text-align: center;
-    margin-bottom: 1rem;
-    margin-top: 2.5rem;
-}
-.container-logo {
-    text-align: center;
-}
+
 .container {
-    display: flex;
-    justify-content: space-between;
-    min-height: 95vh;
-    box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  min-height: 95vh;
+  box-sizing: border-box;
 }
 
 .container-titulos {
-    width: 48%;
-    min-height: 95vh;
-    background-color: #D1A2FC;
-    box-sizing: border-box;
+  width: 48%;
+  min-height: 95vh;
+  background-color: #D1A2FC;
+  box-sizing: border-box;
 }
-
-.container-santo {
-    width: 48%;
-    border: 4px solid #8102F5;
-    box-sizing: border-box;
+.container-logo {
+  text-align: center;
 }
-.container-imagen {
-    text-align: center;
+.logo {
+  width: 35%;
+  margin-top: 1rem;
+  margin-bottom: 0;
 }
-
-.letra {
-    margin-top: 0;
-    text-align: center;
-    margin-bottom: 0.5rem;
+.titulo {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
-.nombre {
-    margin-top: 0;
-    text-align: center;
+.container-boton {
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 2.5rem;
 }
-.imagen {
-    width: 20em;
-    height: 20em;
-}
-
 button {
   font-weight: bold;
   font-size: 1.5em;
@@ -82,20 +55,41 @@ button {
   transition: all 0.3s ease;
   border: 4px solid #8102F5;
 }
-
-/* Efecto al pasar el mouse */
 button:hover {
   background-color: #00b0cc;
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
-
-/* Efecto al presionar */
 button:active {
   transform: translateY(1px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.container-santo {
+  width: 48%;
+  border: 4px solid #8102F5;
+  box-sizing: border-box;
+}
+.letra {
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.nombre {
+  margin-top: 0;
+  text-align: center;
+}
+.container-imagen {
+  text-align: center;
+}
+.imagen {
+  width: 22em;
+  height: 22em;
+}
+img {
+  border: 4px solid #8102F5;
+  border-radius: 12px;
+}
 
 /* Responsividad */
 @media (max-width: 1024px) {
