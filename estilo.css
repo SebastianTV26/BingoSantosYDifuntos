@@ -92,7 +92,7 @@ button:active {
 }
 
 
-/* 📱 RESPONSIVIDAD */
+/* RESPONSIVIDAD */
 @media (max-width: 1024px) {
   h1 { font-size: 2.5em; }
   h2 { font-size: 3em; }
@@ -113,6 +113,10 @@ button:active {
       width: 50%;
   }
 
+  img {
+    max-width: 90%;
+  }
+
   button {
       font-size: 1.2em;
       padding: 0.8rem 1.5rem;
@@ -127,6 +131,10 @@ button:active {
 
   .logo {
       width: 70%;
+  }
+
+  img {
+    max-width: 90%;
   }
 
   button {
