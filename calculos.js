@@ -6,7 +6,7 @@
 let santosSorteados = [];
 let santos = [];
 
-// Cargar santos desde data.json al iniciar
+// Cargar santos desde data.json
 async function cargarSantos() {
   try {
     const response = await fetch("data.json");
@@ -20,12 +20,12 @@ async function cargarSantos() {
 }
 
 async function sortearSantos() {
-  // Asegurarse de que los datos estén cargados
+  // Asegurar que los datos estén cargados
   if (santos.length === 0) {
     await cargarSantos();
   }
 
-  // Filtrar los que aún no se han sorteado
+  // Filtrar santos no sorteados
   const disponibles = santos.filter(
     santo => !santosSorteados.includes(santo.id)
   );
@@ -35,22 +35,23 @@ async function sortearSantos() {
     return;
   }
 
-  // Escoger un santo al azar
+  // Seleccionar uno al azar
   const indiceAleatorio = Math.floor(Math.random() * disponibles.length);
   const santo = disponibles[indiceAleatorio];
 
-  // Marcar como sorteado
+  // Guardar ID sorteado
   santosSorteados.push(santo.id);
 
-  console.log("Santo sorteado:", santo.nombre);
+  console.log("Santo sorteado:", santo.Nombre);
 
-  document.getElementById("letra").innerText = santo.letra;
-  document.getElementById("nombre").innerText = santo.nombre;
+  // Mostrar en pantalla
+  document.getElementById("letra").innerText = santo.Letra;
+  document.getElementById("nombre").innerText = santo.Nombre;
   document.getElementById("imagen").innerHTML =
-    `<img src="${santo.imagen}" class="imagen" alt="${santo.nombre}">`;
+    `<img src="${santo.Imagen}" class="imagen" alt="${santo.Nombre}">`;
 }
 
-async function reiniciar() {
+function reiniciar() {
   document.getElementById("letra").innerText = "";
   document.getElementById("nombre").innerText = "";
   document.getElementById("imagen").innerHTML = "";
