@@ -9,7 +9,7 @@ let santos = [];
 // Cargar santos desde data.json
 async function cargarSantos() {
   try {
-    const response = await fetch("Json/data.json");
+    const response = await fetch("./Json/data.json"); // respeta mayúsculas
     if (!response.ok) {
       throw new Error("No se pudo cargar data.json");
     }
