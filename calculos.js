@@ -1,37 +1,52 @@
 // Conexión con Supabase
-const SUPABASE_URL = "https://uuhjlglcqovzcqmzpcnj.supabase.co"; 
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV1aGpsZ2xjcW92emNxbXpwY25qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA0NDgzMzksImV4cCI6MjA3NjAyNDMzOX0.JzvuNuYjRCLOa_Fmaw2XlX8pnwTjaBMUtlk8JQn6E2s"; 
-const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+// const SUPABASE_URL = "https://uuhjlglcqovzcqmzpcnj.supabase.co"; 
+// const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV1aGpsZ2xjcW92emNxbXpwY25qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA0NDgzMzksImV4cCI6MjA3NjAyNDMzOX0.JzvuNuYjRCLOa_Fmaw2XlX8pnwTjaBMUtlk8JQn6E2s"; 
+// const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let santosSorteados = [];
+let santos = [];
+
+// Cargar santos desde data.json al iniciar
+async function cargarSantos() {
+  try {
+    const response = await fetch("data.json");
+    if (!response.ok) {
+      throw new Error("No se pudo cargar data.json");
+    }
+    santos = await response.json();
+  } catch (error) {
+    console.error("Error al cargar los santos:", error);
+  }
+}
 
 async function sortearSantos() {
-  const { data, error } = await client.from("santo").select("*");
-
-  if (error) {
-    console.error("Error al cargar los santos:", error);
-    return;
+  // Asegurarse de que los datos estén cargados
+  if (santos.length === 0) {
+    await cargarSantos();
   }
-  
-  // Filtrar los que aún no se han sorteado
-  const disponibles = data.filter(santo => !santosSorteados.includes(santo.id));
 
-   if (disponibles.length === 0) {
+  // Filtrar los que aún no se han sorteado
+  const disponibles = santos.filter(
+    santo => !santosSorteados.includes(santo.id)
+  );
+
+  if (disponibles.length === 0) {
     alert("Ya se sortearon todos los santos");
     return;
   }
 
-  // Escoger un santo al azar de los disponibles
+  // Escoger un santo al azar
   const indiceAleatorio = Math.floor(Math.random() * disponibles.length);
   const santo = disponibles[indiceAleatorio];
 
-  // Registrar que ya fue sorteado
+  // Marcar como sorteado
   santosSorteados.push(santo.id);
+
   console.log("Santo sorteado:", santo.nombre);
 
   document.getElementById("letra").innerText = santo.letra;
   document.getElementById("nombre").innerText = santo.nombre;
-  document.getElementById("imagen").innerHTML = 
+  document.getElementById("imagen").innerHTML =
     `<img src="${santo.imagen}" class="imagen" alt="${santo.nombre}">`;
 }
 
