@@ -42,13 +42,13 @@ async function sortearSantos() {
   // Guardar ID sorteado
   santosSorteados.push(santo.id);
 
-  console.log("Santo sorteado:", santo.Nombre);
+  console.log("Santo sorteado:", santo.nombre);
 
   // Mostrar en pantalla
-  document.getElementById("letra").innerText = santo.Letra;
-  document.getElementById("nombre").innerText = santo.Nombre;
+  document.getElementById("letra").innerText = santo.letra;
+  document.getElementById("nombre").innerText = santo.nombre;
   document.getElementById("imagen").innerHTML =
-    `<img src="${santo.Imagen}" class="imagen" alt="${santo.Nombre}">`;
+    `<img src="${santo.imagen}" class="imagen" alt="${santo.nombre}">`;
 }
 
 function reiniciar() {
